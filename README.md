@@ -1,29 +1,17 @@
-# README #
+# Rabbit Heaven README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Steps To get to Rabbit Heaven ###
 
-### What is this repository for? ###
+* [Install ERLANG](https://www.erlang.org/downloads)
+* [Install Rabbit] (https://www.rabbitmq.com/download.html)
+* [Tutorials for Rabbit] (https://github.com/rabbitmq/rabbitmq-tutorials)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### QueueService Client in Project  ###
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
+* Knows how to write Serializable DotNet Objects to Queue(s)
+* Knows how to read Objects from Queue(s)
+* Shows Usage examples of reading and writing to a RabbitMQ Queue
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* You are on your own if you use this code...

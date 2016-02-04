@@ -3,8 +3,8 @@
 ### Steps To get to Rabbit Heaven ###
 
 * [Install ERLANG](https://www.erlang.org/downloads)
-* [Install Rabbit] (https://www.rabbitmq.com/download.html)
-* [Tutorials for Rabbit] (https://github.com/rabbitmq/rabbitmq-tutorials)
+* [Install Rabbit](https://www.rabbitmq.com/download.html)
+* [Tutorials for Rabbit](https://github.com/rabbitmq/rabbitmq-tutorials)
 
 ### QueueService Client in Project  ###
 

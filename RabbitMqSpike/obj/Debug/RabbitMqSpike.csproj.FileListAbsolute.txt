@@ -1,0 +1,10 @@
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\RabbitMqSpike.exe.config
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\RabbitMqSpike.exe
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\RabbitMqSpike.pdb
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\RabbitMQ.Client.dll
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\RabbitMQ.Client.xml
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\obj\Debug\RabbitMqSpike.csprojResolveAssemblyReference.cache
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\obj\Debug\RabbitMqSpike.exe
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\obj\Debug\RabbitMqSpike.pdb
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\Prototypes\RabbitMqSpike\RabbitMqSpike\bin\Debug\Newtonsoft.Json.xml

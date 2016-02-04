@@ -5,6 +5,7 @@
 * [Install ERLANG](https://www.erlang.org/downloads)
 * [Install Rabbit](https://www.rabbitmq.com/download.html)
 * [Tutorials for Rabbit](https://github.com/rabbitmq/rabbitmq-tutorials)
+* [Install the Web Management Interface](https://www.rabbitmq.com/management.html)
 
 ### QueueService Client in Project  ###
 

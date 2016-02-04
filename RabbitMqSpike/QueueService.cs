@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 using Newtonsoft.Json;
@@ -17,33 +18,34 @@ namespace RabbitMqSpike
             _connectionFactory = new ConnectionFactory { HostName = hostName };
         }
 
-        public bool Send<TMessage>(MessageWrapper<TMessage> message, string queueName = "default") where TMessage : class
+        public bool Send<TMessage>(MessageWrapper<TMessage> message, string routingKey = "default") where TMessage : class
         {
            
             using (var connection = _connectionFactory.CreateConnection())
             
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queueName, false, false, false, null);
+                channel.QueueDeclare(queue: routingKey, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
                 var serializedMessage = JsonConvert.SerializeObject(message);
 
                 var body = Encoding.UTF8.GetBytes(serializedMessage);
 
-                channel.BasicPublish("", queueName, null, body);
+                channel.BasicPublish(exchange: "", routingKey: routingKey, basicProperties: null, body: body);
+
                 return true;
             }
             
         }
 
-        public MessageWrapper<TMessage> Send<TMessage>(string queueName = "default") where TMessage : class
+        public MessageWrapper<TMessage> Receive<TMessage>(string routingKey = "default") where TMessage : class
         {
             using (var connection = _connectionFactory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
                 MessageWrapper<TMessage> returnObj = null;
 
-                channel.QueueDeclare("hello", false, false, false, null);
+                channel.QueueDeclare(queue: routingKey, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
@@ -55,10 +57,12 @@ namespace RabbitMqSpike
                     var messageObject = JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(message);
                     
                     returnObj = messageObject;
+
+                    Console.WriteLine(" [x] Received {0}", message);
                 };
 
-                channel.BasicConsume("hello", true, consumer);
-                
+                channel.BasicConsume(queue: routingKey, noAck: true, consumer: consumer);
+
                 return returnObj;
             }
 

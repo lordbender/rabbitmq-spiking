@@ -15,7 +15,7 @@ namespace RabbitMqSpike
             using (var service = new QueueService())
             {
                 //Send a message to the Queue.
-                service.Send(new MessageWrapper<SomeMessage>
+                service.EnqueueObject(new MessageWrapper<SomeMessage>
                 {
                     Title = "Test Client Message",
                     Message = new SomeMessage
@@ -27,7 +27,7 @@ namespace RabbitMqSpike
 
                 //Would presumably be in some other application.
                 //Get the next available message from the Queue
-                var message = service.Receive<SomeMessage>();
+                var message = service.DequeueObject<SomeMessage>();
 
                 //Prove the message was read...
                 Console.WriteLine("Message Title: {0}", message.Title);

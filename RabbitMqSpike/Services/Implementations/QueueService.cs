@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -31,7 +32,34 @@ namespace RabbitMqSpike.Services.Implementations
                 channel.QueueDeclare(routingKey, durable, exclusive, autoDelete, paramiters);
         }
 
-        public void Send<TMessage>(MessageWrapper<TMessage> message, string routingKey = "default") where TMessage : class
+        public void EnqueueObject<TMessage>(MessageWrapper<TMessage> message, string routingKey = "default") where TMessage : class
+        {
+            //Make sure the queue Exists before writing to it.
+            CreateQueue(routingKey);
+
+            //Enqueue the message as a string.
+            EnqueueString(JsonConvert.SerializeObject(message), routingKey);
+        }
+
+        public MessageWrapper<TMessage> DequeueObject<TMessage>(string routingKey = "default") where TMessage : class
+        {
+            return JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(DequeueString(routingKey));
+        }
+
+        public void EnqueueInt(int message, string routingKey = "default")
+        {
+            //Make sure the queue Exists before writing to it.
+            CreateQueue(routingKey);
+
+            throw new NotImplementedException();
+        }
+
+        public int DequeueInt(string routingKey = "default")
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnqueueString(string message, string routingKey = "default")
         {
             //Make sure the queue Exists before writing to it.
             CreateQueue(routingKey);
@@ -39,22 +67,19 @@ namespace RabbitMqSpike.Services.Implementations
             using (var connection = _connectionFactory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                var serializedMessage = JsonConvert.SerializeObject(message);
-
-                var body = Encoding.UTF8.GetBytes(serializedMessage);
+                var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish("", routingKey, null, body);
             }
         }
 
-        public MessageWrapper<TMessage> Receive<TMessage>(string routingKey = "default") where TMessage : class
+        public string DequeueString(string routingKey = "default")
         {
             using (var connection = _connectionFactory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
                 // channel.QueueDeclare(routingKey, false, false, false, null);
                 var result = channel.BasicGet(routingKey, true);
-                var message = Encoding.UTF8.GetString(result.Body);
-                return JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(message);
+                return Encoding.UTF8.GetString(result.Body);
             }
         }
 

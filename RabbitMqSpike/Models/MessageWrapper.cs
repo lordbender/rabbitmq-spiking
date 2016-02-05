@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RabbitMqSpike
+namespace RabbitMqSpike.Models
 {
     [Serializable]
     public class MessageWrapper<TMessage>

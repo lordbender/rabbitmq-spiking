@@ -13,6 +13,7 @@
 * Knows how to write Serializable DotNet Objects to Queue(s)
 * Knows how to read Objects from Queue(s)
 * Shows Usage examples of reading and writing to a RabbitMQ Queue
+* It is common to use serialization formats like JSON, Thrift, Protocol Buffers and MessagePack to serialize structured data in order to publish it as the message payload.
 
 ### Who do I talk to? ###
 

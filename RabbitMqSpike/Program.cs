@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 using Newtonsoft.Json;
 
@@ -17,24 +18,29 @@ namespace RabbitMqSpike
             //Your friendly neighborhood queue wrapper!
             using (IQueueService service = new QueueService("localhost"))
             {
-                //Send a message Object to the Queue.
-                service.EnqueueObject(new MessageWrapper<SomeMessage>
-                {
-                    Title = "Test Client Message",
-                    Message = new SomeMessage
+                //Send a few message Object to the Queue.
+                for (var i = 0; i < 1000; i++)
+                    service.EnqueueObject(new MessageWrapper<SomeMessage>
                     {
-                        SomeProp = "Testing",
-                        SomeOtherProp = DateTime.Now
-                    }
-                }, "objectQueue");
+                        Title = "Test Client Message",
+                        Message = new SomeMessage
+                        {
+                            SomeProp = "Testing",
+                            SomeOtherProp = DateTime.Now
+                        }
+                    }, "objectQueue");
 
                 //Would presumably be in some other application.
-                //Get the next available message from the Queue
-                var message = service.DequeueObject<SomeMessage>("objectQueue");
+                //Get the next available message from the Queue.
+                for (var i = 0; i < 1000; i++)
+                {
+                    Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
+                    var message = service.DequeueObject<SomeMessage>("objectQueue");
 
-                //Prove the message was read...
-                Console.WriteLine("\tComplex Object Message Title: {0}", message.Title);
-                Console.WriteLine("\tComplex Object: {0}\n\n", JsonConvert.SerializeObject(message.Message));
+                    //Prove the message was read...
+                    Console.WriteLine("\tComplex Object Message Title: {0}", message.Title);
+                    Console.WriteLine("\tProcessing Complex Object: {0}\n\n", JsonConvert.SerializeObject(message.Message));
+                }
 
                 /*Simple string example*/
                 service.EnqueueString("Awesome Queue Man!!!", "stringQueue");

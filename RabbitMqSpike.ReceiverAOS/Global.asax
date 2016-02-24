@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="RabbitMqSpike.ReceiverAOS.WebApiApplication" Language="C#" %>

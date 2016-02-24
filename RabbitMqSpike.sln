@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3) MockAutoStartService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike.Sender", "RabbitMqSpike.Sender\RabbitMqSpike.Sender.csproj", "{44F7C247-E46F-4B9A-9D76-7295F5E226F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike.ReceiverAOS", "RabbitMqSpike.ReceiverAOS\RabbitMqSpike.ReceiverAOS.csproj", "{1FA68D35-72B2-49EE-B788-C50A1C86FBD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{44F7C247-E46F-4B9A-9D76-7295F5E226F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44F7C247-E46F-4B9A-9D76-7295F5E226F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44F7C247-E46F-4B9A-9D76-7295F5E226F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA68D35-72B2-49EE-B788-C50A1C86FBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA68D35-72B2-49EE-B788-C50A1C86FBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA68D35-72B2-49EE-B788-C50A1C86FBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA68D35-72B2-49EE-B788-C50A1C86FBD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +67,6 @@ Global
 		{D4B7B9F3-B8D9-48A6-BCBD-AEFE0C5D25F4} = {305990CF-B19F-4A80-B0EB-ACF93608FCC4}
 		{6AC2E187-40F9-4B8C-8024-6D3524D5B333} = {305990CF-B19F-4A80-B0EB-ACF93608FCC4}
 		{44F7C247-E46F-4B9A-9D76-7295F5E226F9} = {483615F4-F81E-4BAC-95B5-0AB6C580C83F}
+		{1FA68D35-72B2-49EE-B788-C50A1C86FBD7} = {9E629AE0-4A06-40AF-A1E8-B26282837A90}
 	EndGlobalSection
 EndGlobal

@@ -46,7 +46,9 @@ namespace RabbitMqSpike.Service
         public MessageWrapper<TMessage> DequeueObject<TMessage>(string routingKey = "objectQueue")
             where TMessage : class
         {
-            return JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(DequeueString(routingKey));
+            var t = DequeueString(routingKey);
+
+            return t == null ? null : JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(t);
         }
 
         public void EnqueueInt(long message, string routingKey = "intQueue")
@@ -81,7 +83,8 @@ namespace RabbitMqSpike.Service
             {
                 // channel.QueueDeclare(routingKey, false, false, false, null);
                 var result = channel.BasicGet(routingKey, true);
-                return Encoding.UTF8.GetString(result.Body);
+
+                return result == null ? null : Encoding.UTF8.GetString(result.Body);
             }
         }
 

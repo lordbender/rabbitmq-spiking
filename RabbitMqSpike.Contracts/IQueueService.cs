@@ -6,7 +6,7 @@ namespace RabbitMqSpike.Contracts
     public interface IQueueService : IDisposable
     {
         /// <summary>
-        /// Ensures that the Queue Exists 
+        ///     Ensures that the Queue Exists
         /// </summary>
         /// <param name="routingKey">Queue Name</param>
         /// <param name="durable">Durability (exchanges survive broker restart)</param>

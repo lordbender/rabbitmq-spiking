@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 using RabbitMqSpike.Contracts;
 using RabbitMqSpike.Listener;
+using RabbitMqSpike.Sender;
 using RabbitMqSpike.Service;
 
 namespace RabbitMqSpike
@@ -52,28 +53,21 @@ namespace RabbitMqSpike
                 service.EnqueueInt(1234322);
                 var intMessage = service.DequeueInt();
                 Console.WriteLine("\tSimple int/long message retrieved: {0}\n\n", intMessage);
-
-                //Send a few message Object to the Queue to test the AutoStart Emulator.
-                for (var i = 0; i < 10; i++)
-                    service.EnqueueObject(new MessageWrapper<SomeMessage>
-                    {
-                        Title = "Test IIS AutoStart Client Message",
-                        Message = new SomeMessage
-                        {
-                            SomeProp = "Testing AutoStart",
-                            SomeOtherProp = DateTime.Now
-                        }
-                    }, "AutoStartServiceQueue");
             }
 
             //Emulate AutoStart IIS Service:
-            using (var autoStart = new ObjectQueueObserver<SomeMessage>(2 /*Tick Every 2 Seconds*/, "localhost", "AutoStartServiceQueue"))
+            using (var autoStart = new ObjectQueueObserver<SomeMessage>(1 /*Tick Every 1 Seconds*/, "localhost", "AutoStartServiceQueue"))
             {
                 autoStart.Start();
 
-                //See ya later.
-                Console.WriteLine("Hit enter to exit...");
-                Console.ReadLine();
+                using (var autoStartSender = new ObjectQueueSender<SomeMessage>(10 /*Tick Every 10 Seconds*/, "localhost", "AutoStartServiceQueue"))
+                {
+                    autoStartSender.Start();
+
+                    //See ya later.
+                    Console.WriteLine("Hit enter to exit...");
+                    Console.ReadLine();
+                }
             }
         }
     }

@@ -74,8 +74,6 @@ namespace RabbitMqSpike
                 //See ya later.
                 Console.WriteLine("Hit enter to exit...");
                 Console.ReadLine();
-
-                autoStart.Stop();
             }
         }
     }

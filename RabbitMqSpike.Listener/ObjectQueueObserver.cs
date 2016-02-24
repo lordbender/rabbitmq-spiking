@@ -16,9 +16,10 @@ namespace RabbitMqSpike.Listener
         {
             _hostName = hostName;
             _routingKey = routingKey;
-            _timer = new Timer(60*60*intervalInSeconds);
+            _timer = new Timer(60*60*intervalInSeconds) {Enabled = false};
+
+            /*Set the timer target!!!*/
             _timer.Elapsed += Tartget;
-            _timer.Enabled = false;
 
             Console.WriteLine("ObjectQueueObserver Created Timer Tick at {0}, looking in {1} Queue for work...", 60*60*intervalInSeconds, _hostName);
         }
@@ -29,11 +30,6 @@ namespace RabbitMqSpike.Listener
         }
 
         public void Start()
-        {
-            _timer.Start();
-        }
-
-        public void Stop()
         {
             _timer.Start();
         }

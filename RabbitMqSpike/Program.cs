@@ -3,9 +3,9 @@ using System.Threading;
 
 using Newtonsoft.Json;
 
-using RabbitMqSpike.Models;
-using RabbitMqSpike.Services.Contracts;
-using RabbitMqSpike.Services.Implementations;
+using RabbitMqSpike.Contracts;
+using RabbitMqSpike.Listener;
+using RabbitMqSpike.Service;
 
 namespace RabbitMqSpike
 {
@@ -13,13 +13,13 @@ namespace RabbitMqSpike
     {
         private static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            //Console.ForegroundColor = ConsoleColor.Cyan;
 
-            //Your friendly neighborhood queue wrapper!
+            ////Your friendly neighborhood queue wrapper!
             using (IQueueService service = new QueueService("localhost"))
             {
                 //Send a few message Object to the Queue.
-                for (var i = 0; i < 1000; i++)
+                for (var i = 0; i < 10; i++)
                     service.EnqueueObject(new MessageWrapper<SomeMessage>
                     {
                         Title = "Test Client Message",
@@ -32,14 +32,15 @@ namespace RabbitMqSpike
 
                 //Would presumably be in some other application.
                 //Get the next available message from the Queue.
-                for (var i = 0; i < 1000; i++)
+                for (var i = 0; i < 10; i++)
                 {
                     Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
                     var message = service.DequeueObject<SomeMessage>("objectQueue");
 
                     //Prove the message was read...
                     Console.WriteLine("\tComplex Object Message Title: {0}", message.Title);
-                    Console.WriteLine("\tProcessing Complex Object: {0}\n\n", JsonConvert.SerializeObject(message.Message));
+                    Console.WriteLine("\tProcessing Complex Object: {0}\n\n",
+                        JsonConvert.SerializeObject(message.Message));
                 }
 
                 /*Simple string example*/
@@ -51,11 +52,31 @@ namespace RabbitMqSpike
                 service.EnqueueInt(1234322);
                 var intMessage = service.DequeueInt();
                 Console.WriteLine("\tSimple int/long message retrieved: {0}\n\n", intMessage);
+
+                //Send a few message Object to the Queue to test the AutoStart Emulator.
+                for (var i = 0; i < 10; i++)
+                    service.EnqueueObject(new MessageWrapper<SomeMessage>
+                    {
+                        Title = "Test IIS AutoStart Client Message",
+                        Message = new SomeMessage
+                        {
+                            SomeProp = "Testing AutoStart",
+                            SomeOtherProp = DateTime.Now
+                        }
+                    }, "AutoStartServiceQueue");
             }
 
-            //See ya later.
-            Console.WriteLine("Hit enter to exit...");
-            Console.ReadLine();
+            //Emulate AutoStart IIS Service:
+            using (var autoStart = new ObjectQueueObserver<SomeMessage>(2 /*Tick Every 2 Seconds*/, "localhost", "AutoStartServiceQueue"))
+            {
+                autoStart.Start();
+
+                //See ya later.
+                Console.WriteLine("Hit enter to exit...");
+                Console.ReadLine();
+
+                autoStart.Stop();
+            }
         }
     }
 }

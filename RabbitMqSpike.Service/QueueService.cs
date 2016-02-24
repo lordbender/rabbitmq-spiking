@@ -4,12 +4,11 @@ using System.Text;
 
 using Newtonsoft.Json;
 
-using RabbitMqSpike.Models;
-using RabbitMqSpike.Services.Contracts;
+using RabbitMqSpike.Contracts;
 
 using RabbitMQ.Client;
 
-namespace RabbitMqSpike.Services.Implementations
+namespace RabbitMqSpike.Service
 {
     public class QueueService : IQueueService
     {
@@ -26,14 +25,16 @@ namespace RabbitMqSpike.Services.Implementations
             };
         }
 
-        public void CreateQueue(string routingKey = "default", bool durable = true, bool exclusive = false, bool autoDelete = false, IDictionary<string, object> paramiters = null)
+        public void CreateQueue(string routingKey = "default", bool durable = true, bool exclusive = false,
+            bool autoDelete = false, IDictionary<string, object> paramiters = null)
         {
             using (var connection = _connectionFactory.CreateConnection())
             using (var channel = connection.CreateModel())
                 channel.QueueDeclare(routingKey, durable, exclusive, autoDelete, paramiters);
         }
 
-        public void EnqueueObject<TMessage>(MessageWrapper<TMessage> message, string routingKey = "objectQueue") where TMessage : class
+        public void EnqueueObject<TMessage>(MessageWrapper<TMessage> message, string routingKey = "objectQueue")
+            where TMessage : class
         {
             //Make sure the queue Exists before writing to it.
             CreateQueue(routingKey);
@@ -42,7 +43,8 @@ namespace RabbitMqSpike.Services.Implementations
             EnqueueString(JsonConvert.SerializeObject(message), routingKey);
         }
 
-        public MessageWrapper<TMessage> DequeueObject<TMessage>(string routingKey = "objectQueue") where TMessage : class
+        public MessageWrapper<TMessage> DequeueObject<TMessage>(string routingKey = "objectQueue")
+            where TMessage : class
         {
             return JsonConvert.DeserializeObject<MessageWrapper<TMessage>>(DequeueString(routingKey));
         }

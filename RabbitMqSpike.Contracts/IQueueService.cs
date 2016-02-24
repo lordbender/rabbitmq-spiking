@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using RabbitMqSpike.Models;
-
-namespace RabbitMqSpike.Services.Contracts
+namespace RabbitMqSpike.Contracts
 {
     public interface IQueueService : IDisposable
     {

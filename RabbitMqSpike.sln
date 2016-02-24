@@ -5,6 +5,22 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike", "RabbitMqSpike\RabbitMqSpike.csproj", "{E7D8150A-517C-4624-88E3-62CD57A109CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike.Contracts", "RabbitMqSpike.Contracts\RabbitMqSpike.Contracts.csproj", "{B6507AD4-071C-43E8-9A92-9EB0AF293F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike.Service", "RabbitMqSpike.Service\RabbitMqSpike.Service.csproj", "{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSpike.Listener", "RabbitMqSpike.Listener\RabbitMqSpike.Listener.csproj", "{9BD1F365-A7A3-48CF-8B72-4D99675E8486}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1) Test App", "1) Test App", "{9E629AE0-4A06-40AF-A1E8-B26282837A90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2) Services", "2) Services", "{305990CF-B19F-4A80-B0EB-ACF93608FCC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a) Contracts", "a) Contracts", "{D4B7B9F3-B8D9-48A6-BCBD-AEFE0C5D25F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "b) Implementations", "b) Implementations", "{6AC2E187-40F9-4B8C-8024-6D3524D5B333}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3) MockAutoStartService", "3) MockAutoStartService", "{483615F4-F81E-4BAC-95B5-0AB6C580C83F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +31,28 @@ Global
 		{E7D8150A-517C-4624-88E3-62CD57A109CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7D8150A-517C-4624-88E3-62CD57A109CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7D8150A-517C-4624-88E3-62CD57A109CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6507AD4-071C-43E8-9A92-9EB0AF293F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6507AD4-071C-43E8-9A92-9EB0AF293F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6507AD4-071C-43E8-9A92-9EB0AF293F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6507AD4-071C-43E8-9A92-9EB0AF293F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD1F365-A7A3-48CF-8B72-4D99675E8486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD1F365-A7A3-48CF-8B72-4D99675E8486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD1F365-A7A3-48CF-8B72-4D99675E8486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD1F365-A7A3-48CF-8B72-4D99675E8486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7D8150A-517C-4624-88E3-62CD57A109CA} = {9E629AE0-4A06-40AF-A1E8-B26282837A90}
+		{B6507AD4-071C-43E8-9A92-9EB0AF293F5D} = {D4B7B9F3-B8D9-48A6-BCBD-AEFE0C5D25F4}
+		{F915FBDC-F9F4-4F9E-AFC8-B7417234CFAF} = {6AC2E187-40F9-4B8C-8024-6D3524D5B333}
+		{9BD1F365-A7A3-48CF-8B72-4D99675E8486} = {483615F4-F81E-4BAC-95B5-0AB6C580C83F}
+		{D4B7B9F3-B8D9-48A6-BCBD-AEFE0C5D25F4} = {305990CF-B19F-4A80-B0EB-ACF93608FCC4}
+		{6AC2E187-40F9-4B8C-8024-6D3524D5B333} = {305990CF-B19F-4A80-B0EB-ACF93608FCC4}
 	EndGlobalSection
 EndGlobal
